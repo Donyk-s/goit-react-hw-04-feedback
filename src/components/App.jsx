@@ -56,9 +56,9 @@
 //   );
 // };
 import React, { useState } from 'react';
-import { FeedbackOptions } from './feedback/Feedback/FeedbackOptions';
-import { Statistics } from './feedback/Statistics/Statistics';
-import { Notification } from './feedback/Notification/Notification';
+import { FeedbackOptions } from './Feedback/FeadbackOptions';
+import { Statistics } from './Statistics/Statistics';
+import { Notification } from './Notification/Notification';
 
 export const App = () => {
   const [good, setGood] = useState(0);
