@@ -2,9 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import css from './Statistics.module.css';
 
-export const Statistics = ({ good, neutral, bad, total }) => {
-  const positiveFeedbackPercentage =
-    Math.round((good / (good + neutral + bad)) * 100) || 0;
+export const Statistics = ({ good, neutral, bad, total, positiveFeedbackPercentage}) => {
 
   return (
     <div className={css.block}>
@@ -34,4 +32,5 @@ Statistics.propTypes = {
   neutral: PropTypes.number.isRequired,
   bad: PropTypes.number.isRequired,
   total: PropTypes.number.isRequired,
+  positiveFeedbackPercentage: PropTypes.func.isRequired
 };

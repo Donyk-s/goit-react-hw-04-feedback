@@ -9,17 +9,25 @@ export const App = () => {
   const [bad, setBad] = useState(0);
 
   const totalFeedback = good + neutral + bad;
-  const positiveFeedbackPercentage =
-    Math.round((good / totalFeedback) * 100) || 0;
-  const handleFeedback = option => {
-    if (option === 'good') {
-      setGood(prevGood => prevGood + 1);
-    } else if (option === 'neutral') {
-      setNeutral(prevNeutral => prevNeutral + 1);
-    } else if (option === 'bad') {
-      setBad(prevBad => prevBad + 1);
-    }
-  };
+  const positiveFeedbackPercentage = Math.round((good / (good + neutral + bad)) * 100) || 0;
+
+    const handleFeedback = option => {
+      switch (option) {
+        case 'good':
+          setGood(prevGood => prevGood + 1);
+          break;
+        case 'neutral':
+          setNeutral(prevNeutral => prevNeutral + 1);
+          break;
+        case 'bad':
+          setBad(prevBad => prevBad + 1);
+          break;
+        default:
+          alert('Leave feedback');
+      }
+    };
+    
+
   return (
     <div
       style={{
@@ -34,16 +42,16 @@ export const App = () => {
     >
       <h1>Please leave only positive reviews &#129488;</h1>
       <FeedbackOptions
-        options={['good', 'neutral', 'bad']}
-        onLeaveFeedback={handleFeedback}
-      />
+options={Object.keys({good, neutral, bad})}
+onLeaveFeedback={handleFeedback}
+/> 
       {totalFeedback > 0 ? (
         <Statistics
           good={good}
           neutral={neutral}
           bad={bad}
           total={totalFeedback}
-          positivePercentage={positiveFeedbackPercentage}
+          positiveFeedbackPercentage={positiveFeedbackPercentage}
         />
       ) : (
         <Notification message="There is no feedback" />
